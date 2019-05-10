@@ -2,16 +2,16 @@
 const COLOR ={
   '0':'#FF997A',
   '2':'#EF7AFF',
-  '4':' rgb(254, 7, 245)',
-  '8':'',
-  '16':'',
-  '32':'',
-  '64':'',
-  '128':'',
-  '256':'',
-  '512':'',
-  '1024':'',
-  '2048':''
+  '4':'rgb(254, 7, 245)',
+  '8':'#E85D99',
+  '16':'#EB3360',
+  '32':'red',
+  '64':'#EB5608',
+  '128':'#EB8A1D',
+  '256':'#EBE37E',
+  '512':'#EBEA08',
+  '1024':'#EBEA08',
+  '2048':'#EBEA08'
 
 }
 
@@ -115,6 +115,11 @@ function render(){
       arrayCell =  board[rowIdx][colIdx];
       htmlCell.textContent = arrayCell;
       htmlCell.style.background = COLOR[arrayCell];
+      if(arrayCell===0){
+        htmlCell.style.color = "#FF997A";
+      } else {
+        htmlCell.style.color = "white";
+      }
     })
   })
 }
@@ -228,12 +233,10 @@ function endRight(erboard) {
       let a = array[i];
       let b = array[i+1];
       if (a && b==false) {
-        //round is still going
         return false;
       } 
     }  
   }
-  //round is over
   return true;  
 }
 
@@ -289,19 +292,16 @@ function endDown(edboard) {
       let a = edboard[elIdx][arrIdx];
       let b = edboard[elIdx+1][arrIdx];
       if (a && b==false) {
-        //round is still going
         return false;
       } 
     }  
   }
-  //round is over
   return true;  
 }
 
 function roundDown(rdboard) {
   for(let arrIdx = 0; arrIdx < rdboard.length; arrIdx++) {
     for (let elIdx = 0; elIdx < rdboard.length-1; elIdx++) {
-        // if you flip the order of elIdx and arrIdx you just iterate over each array horizontally. Is there a way to write this so that it is easier to read?
       let a = rdboard[elIdx][arrIdx];
       let b = rdboard[elIdx+1][arrIdx];
       if (a && !b) {
